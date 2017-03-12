@@ -37,15 +37,6 @@ $overlay-button-font-sizes: (
 
 /* Mixins */
 
-
-@mixin padding {
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-    @media (max-width: $bp-s) {
-        padding-left: 1em;
-        padding-right: 1em;
-    }
-}
 @mixin font-size($fs-map) {
   @each $fs-breakpoint, $fs-font-size in $fs-map {
     @if $fs-breakpoint == null {
@@ -98,18 +89,15 @@ $susy: (
 // Standard view
 ul.heroList {
     @include clearfix;
-    @include padding;
-    //padding-top: 1em;
-    //padding-bottom: 1em;
     list-style: none;
+
     li {
         @include span(4);
         margin-bottom: 0;
         overflow: hidden;
         img {
-          transform: scale(2);
+          transform: scale(1.5);
           transform-origin: bottom right;
-          padding:10px;
         }
         .holder {
         	position: relative;
@@ -117,18 +105,22 @@ ul.heroList {
         .overlay{
             position:absolute;
             top:30px;
-            right:40px;
-            text-align:right;
-            //padding: 5px 10px 5px 10px;
+            text-align: left;
+            left:40px;
+            font : {
+		      family: Helvetica, sans-serif;
+		      decoration: none;
+		      color:$font-color; 
+		      weight:$font-weight;
+		      size:35px;
+		    }
 
             .headlineText{
               background: #FFF;
-              @include font-size($headlineText-font-sizes);
-              @include line-height($headlineText-line-height);
-              @include text-padding($headlineText-padding);
               word-spacing: 9999999px;
               text-transform: uppercase;
               box-shadow: 8px 0 0 #ffffff,-8px 0 0 #ffffff;
+              //text-align: left;
             
             }
             .overlay-button{
@@ -148,6 +140,18 @@ ul.heroList {
         } // end overlay 
         &:first-child {          
             @include span(8);
+
+            .overlay{
+            	right:40px;
+           		text-align: right;
+            	.headlineText{
+	           	  	@include font-size($headlineText-font-sizes);
+	              	@include line-height($headlineText-line-height);
+	              	@include text-padding($headlineText-padding);
+            	}
+
+            }
+            
         }
     }
 }
@@ -161,8 +165,18 @@ ul.heroList {
   ul.heroList li {
     @include span(12);
     img {
-      transform: scale(2);
+      transform: scale(1);
       transform-origin: bottom right;
+    }
+    .overlay{
+    	right:40px;
+   		text-align: right;
+    	.headlineText{
+       	  	@include font-size($headlineText-font-sizes);
+          	@include line-height($headlineText-line-height);
+          	@include text-padding($headlineText-padding);
+    	}
+
     }
     
     &:first-child {          
