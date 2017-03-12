@@ -1,6 +1,7 @@
 $font-color: #000;
 $font-weight: bolder;
 
+/* Responsive Fonts and Leadings */
 $headlineText-font-sizes: (
   null  : 20px,
   480px : 24px,
@@ -27,7 +28,7 @@ $overlay-button-font-sizes: (
   1024px: 15px
 );
 
-
+/* Mixins */
 @mixin font-size($fs-map) {
   @each $fs-breakpoint, $fs-font-size in $fs-map {
     @if $fs-breakpoint == null {
@@ -67,24 +68,6 @@ $overlay-button-font-sizes: (
   }
 }
 
-@mixin transform($transformation) {
-  transform: $transformation;
-  -webkit-transform: $transformation;
-  -moz-transform: $transformation;
-  -ms-transform: $transformation;
-  -o-transform: $transformation;  
-}
-
-*,
-*:after,
-*:before {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box; 
-    }
-
 .content{
     font : {
       family: Helvetica, sans-serif;
@@ -111,7 +94,6 @@ $overlay-button-font-sizes: (
             position:absolute;
             top:30px;
             right:40px;
-
             text-align:right;
             //padding: 5px 10px 5px 10px;
 

@@ -1,9 +1,66 @@
-// Requirements
-// ============
-
+@import "compass";
+@import "compass/reset";
 @import "susy";
+
+/* Variables - Breakpoints */
+$bp-s: 480px;
+
+/* Mixins */
+@mixin padding {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    @media (max-width: $bp-s) {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}
 
 $susy: (
   columns: 12,
-  gutters: 1/4,
-);
+  gutters: 0,
+  global-box-sizing: border-box
+); 
+
+@include border-box-sizing;
+
+// Standard view
+ul.heroList {
+    @include clearfix;
+    @include padding;
+    //padding-top: 1em;
+    //padding-bottom: 1em;
+    list-style: none;
+    li {
+        @include span(4);
+        margin-bottom: 0;
+        overflow: hidden;
+        img {
+          transform: scale(2);
+          transform-origin: bottom right;
+          padding: 10px;
+        }
+      
+        &:first-child {          
+            @include span(8);
+        }
+    }
+}
+
+// Mini view
+@media (max-width: $bp-s) {
+  ul.heroList {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+  }
+  ul.heroList li {
+    @include span(12);
+    img {
+      transform: scale(2);
+      transform-origin: bottom right;
+    }
+    
+    &:first-child {          
+      @include span(12);
+    }
+  }
+}

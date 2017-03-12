@@ -1,5 +1,173 @@
-// Screen
-// ======
+@import "compass";
+@import "compass/reset";
+@import "susy";
 
-@import "grids";
-@import "stc";
+/* Variables - Breakpoints */
+$bp-s: 680px;
+
+$font-color: #000;
+$font-weight: bolder;
+
+/* Responsive Fonts and Leadings */
+$headlineText-font-sizes: (
+  null  : 20px,
+  480px : 24px,
+  640px : 40px,
+  1024px: 44px
+);
+$headlineText-line-height: (
+  null  : 26px,
+  480px : 30px,
+
+  640px : 46px,
+  1024px: 50px
+);
+$headlineText-padding: (
+  null  : 0px 0px,
+  480px : 4px 8px,
+  640px : 6px 10px,
+  1024px: 8px 12px
+);
+$overlay-button-font-sizes: (
+  null  : 9px,
+  480px : 9px,
+  640px : 15px,
+  1024px: 15px
+);
+
+/* Mixins */
+
+
+@mixin padding {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    @media (max-width: $bp-s) {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}
+@mixin font-size($fs-map) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+    @if $fs-breakpoint == null {
+      font-size: $fs-font-size;
+    }
+    @else {
+      @media screen and (min-width: $fs-breakpoint) {
+        font-size: $fs-font-size;
+      }
+    }
+  }
+}
+
+@mixin line-height($fs-map) {
+  @each $fs-breakpoint, $fs-line-height in $fs-map {
+    @if $fs-breakpoint == null {
+      line-height: $fs-line-height;
+    }
+    @else {
+      @media screen and (min-width: $fs-breakpoint) {
+        line-height: $fs-line-height;
+      }
+    }
+  }
+}
+
+@mixin text-padding($fs-map) {
+  @each $fs-breakpoint, $fs-padding in $fs-map {
+    @if $fs-breakpoint == null {
+      padding: $fs-padding;
+    }
+    @else {
+      @media screen and (min-width: $fs-breakpoint) {
+        padding: $fs-padding;
+      }
+    }
+  }
+}
+
+$susy: (
+  columns: 12,
+  gutters: 0,
+  //padding: 10px;
+  global-box-sizing: border-box
+); 
+
+
+@include border-box-sizing;
+
+// Standard view
+ul.heroList {
+    @include clearfix;
+    @include padding;
+    //padding-top: 1em;
+    //padding-bottom: 1em;
+    list-style: none;
+    li {
+        @include span(4);
+        margin-bottom: 0;
+        overflow: hidden;
+        img {
+          transform: scale(2);
+          transform-origin: bottom right;
+          padding:10px;
+        }
+        .holder {
+        	position: relative;
+        }
+        .overlay{
+            position:absolute;
+            top:30px;
+            right:40px;
+            text-align:right;
+            //padding: 5px 10px 5px 10px;
+
+            .headlineText{
+              background: #FFF;
+              @include font-size($headlineText-font-sizes);
+              @include line-height($headlineText-line-height);
+              @include text-padding($headlineText-padding);
+              word-spacing: 9999999px;
+              text-transform: uppercase;
+              box-shadow: 8px 0 0 #ffffff,-8px 0 0 #ffffff;
+            
+            }
+            .overlay-button{
+              font-color:#FFF;
+              max-width: 100%;
+              text-align: center;
+              margin-top:2%;
+              padding:10px 12px;
+              @include font-size($overlay-button-font-sizes);
+              color:white;
+              text-decoration: none;
+              text-transform:uppercase;
+              background:#D72B26;
+              box-shadow:8px 0 0 #D72B26,-8px 0 0 #D72B26;
+              display:inline-block;
+            }
+        } // end overlay 
+        &:first-child {          
+            @include span(8);
+        }
+    }
+}
+
+// Mini view
+@media (max-width: $bp-s) {
+  ul.heroList {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+  }
+  ul.heroList li {
+    @include span(12);
+    img {
+      transform: scale(2);
+      transform-origin: bottom right;
+    }
+    
+    &:first-child {          
+      @include span(12);
+    }
+  }
+}
+
