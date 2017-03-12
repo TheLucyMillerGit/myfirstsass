@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lucy Image Navigation Elements</title>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<body>
+<main class="wrapper">
+  <article></article>
+  <aside></aside>
+</main>
+
+
+<div class="content">
+<div id="heroList"></div>
+</div>
+
+<script>
+(function() {
+  var testUrl = "data/test.json";
+  $.getJSON(testUrl)
+    .done(function( data ) {
+      $.each( data.heroList.heroItems, function( i, item ) {
+
+          var imageUrl = data.baseSite + item.imageUrl;
+
+          var headlineText =  item.headlineText;
+          var ctaLink =  data.baseSite + item.cta.link;
+          var ctaText =  item.cta.text;
+
+          // for each item in the heroList, create a container containing an image, and an overlay
+          // for each over lay, it should make a DIV containing overlay text and a button with text and a link
+          $( "#heroList" ).append( "<div class='hero-article'><img class='hero-image' src='" + imageUrl + "'/><div class='overlay'><span class='headlineText'>"+ headlineText +"</span><br/><a class='overlay-button' href='"+ ctaLink +"'> " + ctaText + "</a></div></div>");
+      });
+    });
+})();
+</script>
+
+</body>
+</html>
