@@ -11,27 +11,61 @@ $font-weight: bolder;
 /* Responsive Fonts and Leadings */
 $headlineText-font-sizes: (
   null  : 20px,
-  480px : 24px,
-  640px : 40px,
+  //480px : 24px,
+  768px : 40px,
+  896px : 42px,
   1024px: 44px
 );
 $headlineText-line-height: (
   null  : 26px,
-  480px : 30px,
-  640px : 46px,
+  //480px : 30px,
+  768px : 46px,
+  896px : 48px,
   1024px: 50px
 );
 $headlineText-padding: (
   null  : 0px 0px,
-  480px : 4px 8px,
-  640px : 6px 10px,
+  //480px : 4px 8px,
+  768px : 6px 10px,
+  896px : 7px 11px,
   1024px: 8px 12px
 );
+
+$subheadlineText-font-sizes: (
+  null  : 20px,
+  //480px : 24px,
+  768px : 20px,
+  896px : 22px,
+  1024px: 24px
+);
+$subheadlineText-line-height: (
+  null  : 20px,
+  //480px : 30px,
+  768px : 20px,
+  896px : 22px,
+  1024px: 24px
+);
+$subheadlineText-padding: (
+  null  : 0px 0px,
+  //480px : 4px 8px,
+  768px : 6px 10px,
+  896px : 7px 11px,
+  1024px: 8px 12px
+);
+
 $overlay-button-font-sizes: (
+  null  : 8px,
+  //480px : 9px,
+  768px : 12px,
+  896px: 14px,
+  1024px: 16px
+);
+$suboverlay-button-font-sizes: (
   null  : 9px,
-  480px : 9px,
-  640px : 15px,
-  1024px: 15px
+  //480px : 9px,
+  768px : 10px,
+  896px: 11px,
+  1024px: 12px
 );
 
 /* Mixins */
@@ -103,17 +137,19 @@ ul.heroList {
         }
         .overlay{
             position:absolute;
-            top:30px;
+            top:10px;
             text-align: left;
-            left:40px;
+            left:10px;
             font : {
 		      family: Helvetica, sans-serif;
 		      decoration: none;
 		      color:$font-color; 
 		      weight:$font-weight;
-		      size:35px;
 		    }
-
+	        @include font-size($subheadlineText-font-sizes);
+	        @include line-height($subheadlineText-line-height);
+	        @include text-padding($headlineText-padding);
+            
             .headlineText{
               background: #FFF;
               word-spacing: 9999999px;
@@ -126,9 +162,9 @@ ul.heroList {
               font-color:#FFF;
               max-width: 100%;
               text-align: center;
-              margin-top:2%;
-              padding:10px 12px;
-              @include font-size($overlay-button-font-sizes);
+              margin-top:3%;
+              padding:6px 1px;
+              @include font-size($suboverlay-button-font-sizes);
               color:white;
               text-decoration: none;
               text-transform:uppercase;
@@ -142,6 +178,7 @@ ul.heroList {
 
             .overlay{
             	right:40px;
+            	top:20px;
            		text-align: right;
             	.headlineText{
 	           	  	@include font-size($headlineText-font-sizes);
@@ -150,7 +187,12 @@ ul.heroList {
             	}
 
             }
-            
+
+            .overlay-button{
+	            padding:6px 1px;
+	            margin-top:5%;
+	            @include font-size($overlay-button-font-sizes);
+	        }
         }
     }
 }
@@ -168,18 +210,55 @@ ul.heroList {
       transform-origin: bottom right;
     }
     .overlay{
-    	right:40px;
+    	right:20px;
    		text-align: right;
+
     	.headlineText{
-       	  	@include font-size($headlineText-font-sizes);
-          	@include line-height($headlineText-line-height);
-          	@include text-padding($headlineText-padding);
+            font : {
+		      family: Helvetica, sans-serif;
+		      decoration: none;
+		      color:$font-color; 
+		      weight:$font-weight;
+		      size:24px;
+		    }
+
+		    line-height: 24px;
+
+		    .overlay-button{
+	            padding:6px 1px;
+	            margin-top:5%;
+	            font-size:12px;
+	        }
     	}
 
     }
     
     &:first-child {          
-      @include span(12);
+        @include span(12);
+
+        .overlay{
+	    	right:20px;
+	   		text-align: right;
+
+	    	.headlineText{
+	            font : {
+			      family: Helvetica, sans-serif;
+			      decoration: none;
+			      color:$font-color; 
+			      weight:$font-weight;
+			      size:24px;
+			    }
+
+			    line-height: 24px;
+
+			    .overlay-button{
+		            padding:6px 1px;
+		            margin-top:5%;
+		            font-size:12px;
+		        }
+	    	}
+
+    	}
     }
   }
 }
